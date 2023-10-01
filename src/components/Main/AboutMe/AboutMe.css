@@ -1,0 +1,170 @@
+.about-me {
+    width: 100%;
+    background-color: #202020;
+    display: flex;
+    justify-content: center;
+}
+
+.about-me__wrapper {
+    width: 1140px;
+    display: flex;
+    flex-direction: column;
+    padding: 100px 0px;
+}
+
+.about-me__about {
+    border-bottom: 1px solid #DADADA;
+}
+
+.about-me__title {
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 26.63px;
+    letter-spacing: -0.04px;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 23px;
+}
+
+.about-me__info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.about-me__subtitle {
+    max-width: 600px;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+    color: #fff;
+    letter-spacing: -0.04px;
+    margin: 0;
+    padding: 0;
+    margin-top: 66px;
+}
+
+.about-me__job {
+    max-width: 600px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    margin-top: 18px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-me__job-information {
+    max-width: 600px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    margin-top: 26px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 99px;
+}
+
+.about-me__github {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16.94px;
+    color: #fff;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+
+.about-me__github:hover {
+    cursor: pointer;
+    opacity: .7;
+}
+
+.about-me__photo {
+    width: 270px;
+    height: 327px;
+    border-radius: 10px;
+    margin-top: 66px;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 1160px) {
+    .about-me__wrapper {
+        width: 668px;
+        padding: 90px 0; 
+    }
+
+    .about-me__subtitle {
+        font-size: 40px;
+        line-height: 40px;
+    }
+
+    .about-me__job {
+        font-size: 12px;
+        line-height: 18px;
+        margin-top: 16px;
+    }
+
+    .about-me__job-information {
+        width: 364px;
+        font-size: 12px;
+        line-height: 18px;
+        margin-top: 20px;
+        margin-bottom: 87px;
+    }
+
+    .about-me__photo {
+        width: 255px;
+        height: 307px;
+    }
+}
+
+@media screen and (max-width: 690px) {
+    .about-me__wrapper {
+        width: 292px;
+        padding: 70px 0 70px; 
+    }
+
+    .about-me__title {
+        font-size: 18px;
+        line-height: 21.78px;
+        margin-bottom: 28px;
+    }
+
+    .about-me__info {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .about-me__photo {
+        width: 292px;
+        height: 352px;
+        margin-top: 60px;
+    }
+
+    .about-me__subtitle {
+        font-size: 30px;
+        line-height: 36.31px;
+        margin-top: 40px;
+    }
+
+    .about-me__job {
+        font-size: 11px;
+        line-height: 16px;
+        margin-top: 20px;
+    }
+    
+    .about-me__job-information {
+        width: 292px;
+        font-size: 11px;
+        line-height: 16px;
+        margin-bottom: 40px;
+    }
+}
