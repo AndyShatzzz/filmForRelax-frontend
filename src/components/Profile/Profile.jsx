@@ -16,7 +16,7 @@ const name = 'Andy';
                 loggedIn={loggedIn}
             />
                 <div className="profile__container">
-                    <h2 className="profile__title">Привет, {name}!</h2>
+                    <h1 className="profile__title">Привет, {name}!</h1>
                     <form className="profile__form" 
                         name="formEdit" 
                         value={formEdit.values} 
@@ -31,7 +31,7 @@ const name = 'Andy';
                                 minLength={3} maxLength={40}  
                             />
                             <p className="profile__input-info">Andy</p>
-                            <span className="profile__input__input_error">{formEdit.errors.name}</span>
+                            <span className="profile__input-error">{formEdit.errors.name}</span>
                         </label>
                         <label className="profile__form-input">
                             <input className="profile__input" 
@@ -40,7 +40,7 @@ const name = 'Andy';
                                 name="email"
                             />
                             <p className="profile__input-info">pochta@yandex.ru</p>
-                            <span className="profile__input__input_error">{formEdit.errors.email}</span>
+                            <span className="profile__input-error">{formEdit.errors.email}</span>
                         </label>
                         <button type="submit" className="profile__button-edit">Редактировать</button>
                     </form>

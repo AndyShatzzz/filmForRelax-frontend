@@ -1,8 +1,8 @@
 import React from "react";
 import './MoviesCard.css';
 import { useLocation } from "react-router-dom";
-import deleteIcon from '../../images/deleteIcon.png';
-import savedIcon from '../../images/savedIcon.png';
+import deleteIcon from '../../images/deleteIcon.svg';
+import savedIcon from '../../images/savedIcon.svg';
 
 function MoviesCard({ 
     country, 

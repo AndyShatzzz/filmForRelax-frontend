@@ -29,29 +29,32 @@ function Form({ emailInput, passwordInput, buttonSubmit, formText, buttonToggle,
                                 <p className="form__input-info">Имя</p>
                                 <input 
                                     className={`form__input ${form.errors.name ? 'form__input_type_error' : ''}`} 
-                                    name="name" placeholder="" 
+                                    name="name" placeholder="Имя" 
                                     type="text"
                                     minLength={3} maxLength={40}
-
                                     required />
-                                <span className="form__input_error">{form.errors.name}</span>
+                                <span className="form__input-error">{form.errors.name}</span>
                             </label>}
                         <label className="form__form-input">
                             <p className="form__input-info">{emailInput}</p>
                             <input type="email" 
                                 className={`form__input ${form.errors.email ? 'form__input_type_error' : ''}`}
-                                placeholder="" name="email" id="email" 
+                                placeholder="E-mail" 
+                                name="email" 
+                                id="email" 
                                 required />
-                            <span className="form__input_error">{form.errors.email}</span>
+                            <span className="form__input-error">{form.errors.email}</span>
                         </label>
                         <label className="form__form-input">
                             <p className="form__input-info">{passwordInput}</p>
                             <input type="password" 
                                 className={`form__input ${form.errors.password ? 'form__input_type_error' : ''}`}
-                                placeholder="" name="password" id="password" 
+                                placeholder="Пароль" 
+                                name="password" 
+                                id="password" 
                                 minLength={6} maxLength={40} 
                                 required />
-                            <span className="form__input_error">{form.errors.password}</span>
+                            <span className="form__input-error">{form.errors.password}</span>
                         </label>
 
                         {location.pathname === '/signin' && (<button type="submit" className="form__button-submit 

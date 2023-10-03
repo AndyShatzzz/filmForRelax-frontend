@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
 import Navigation from '../Navigation/Navigation';
-import headerLogo from "../../images/headerLogo.png";
+import headerLogoWord from "../../images/headerLogoWord.svg";
 import './Header.css';
 
 function Header({ loggedIn, greeting }) {
@@ -14,24 +14,22 @@ function Header({ loggedIn, greeting }) {
                 && 'header__content_type_columns'}`}>
                 <Link to={'/'} className="header__link-main">
                     <img className="header__image"
-                        src={headerLogo}
+                        src={headerLogoWord}
                         alt="Логотип буквы С"
                     />
                 </Link>
                 
                 {(location.pathname === '/signup' || location.pathname === '/signin')
-                    && <p className="header__greeting">{greeting}</p>}
+                    && <h1 className="header__greeting">{greeting}</h1>}
                 {loggedIn && <Navigation
                     loggedIn={loggedIn}
                 />}
                 
                 {!loggedIn && location.pathname !== '/signin' && location.pathname !== '/signup' && (
                     <div className="header__link-container">
-                        <Link to={'/signup'} className='header__link' >Регистрация</Link>
-                        <Link className='header__link header__link_type_signin' to={'/signin'}>
-                            <div className="header__signin-container">
-                                <p className='header__link header__link_type_signin'>Войти</p>
-                            </div>
+                        <Link to={'/signup'} className='header__link'>Регистрация</Link>
+                        <Link className='header__signin-container' to={'/signin'}> 
+                                <p className='header__link header__link-signin'>Войти</p>
                         </Link>
                     </div>
                 )}

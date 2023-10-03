@@ -14,6 +14,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 32px;
     margin: 0;
+    margin-top: 70px;
     margin-bottom: 10px;
 }
 
@@ -23,6 +24,7 @@
     border-radius: 6px;
     margin-top: 50px;
     margin-bottom: 80px;
+    border: none;
 }
 
 .movies-card-list__more:hover {
@@ -60,6 +62,7 @@
         width: 300px;
         grid-template-columns: 1fr;
         gap: 16px;
+        margin-top: 40px;
     } 
 
     .movies-card-list__more {

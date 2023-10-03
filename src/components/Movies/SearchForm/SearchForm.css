@@ -33,7 +33,7 @@
 }
 
 .search-form__input:focus {
-    outline: #4285F4 solid 1px;
+    outline: #3456F3 solid 1px;
 }
 
 .search-form__input::placeholder {
@@ -52,6 +52,7 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 18px;
+    color: #fff;
     text-align: center;
     margin: 0;
     padding: 0;
@@ -101,7 +102,7 @@
     content: "";
     position: absolute;
     left: 0;
-    top: 0px;
+    top: 0;
     width: 36px;
     height: 20px;
     border-radius: 20px;

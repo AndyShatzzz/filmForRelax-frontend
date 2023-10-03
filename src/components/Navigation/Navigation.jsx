@@ -1,7 +1,7 @@
 import React from "react";
-import { useLocation, NavLink } from "react-router-dom";
+import { Link, useLocation, NavLink } from "react-router-dom";
 import headerIcon from "../../images/headerIcon.svg";
-import navigationMenu from '../../images/navigationMenu.png';
+import navigationMenu from '../../images/navigationMenu.svg';
 import closeIcon from '../../images/closeIcon.svg';
 import './Navigation.css';
 
@@ -26,7 +26,7 @@ function Navigation({ loggedIn }) {
                     <img className="navigation__menu navigation__menu_type_close" src={closeIcon} alt="Кнопка закрытия меню" />
             </button>
                 <div className="navigation__nav-bar">
-                    <NavLink className={isNavBarOpen ?  (({isActive}) => isActive ?  "navigation__active" : "navigation__link") : "navigation__link_type_inactive" } to={'/'}>
+                    <NavLink className={isNavBarOpen ?  (({isActive}) => isActive ?  "navigation__active" : "navigation__link") : "navigation__link-inactive" } to={'/'}>
                         Главная
                     </NavLink>
                     <NavLink className={({isActive}) => isActive ?  "navigation__active" : "navigation__link" } to={'/movies'}>
@@ -37,7 +37,7 @@ function Navigation({ loggedIn }) {
                     </NavLink>
                 </div>
                 <div className="navigation__profile">
-                    <NavLink className={({isActive}) => isActive ? "navigation__active" : "navigation__link" }
+                    <Link className="navigation__link navigation__link-account"
                         to={'/profile'}>
                         Аккаунт
                     <div className={`navigation__wrapper-icon 
@@ -48,7 +48,7 @@ function Navigation({ loggedIn }) {
                             alt="Иконка профиля"
                         />
                     </div>
-                    </NavLink>
+                    </Link>
                 </div>
             </div>
         </nav>

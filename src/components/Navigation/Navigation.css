@@ -13,6 +13,8 @@
 .navigation__container {
     display: flex;
     flex-direction: row;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 
 .navigation__menu {
@@ -47,6 +49,7 @@
     background-color: transparent;
     margin: 0;
     padding: 0;
+    text-align: right;
     text-decoration: none;
     display: flex;
     justify-content: center;
@@ -56,6 +59,12 @@
 .navigation__link:hover {
     cursor: pointer;
     opacity: .7;
+}
+
+.navigation__link-account {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
 }
 
 .navigation__active {
@@ -115,7 +124,7 @@
     display: none;
 }
 
-.navigation__link_type_inactive {
+.navigation__link-inactive {
     display: none;
 }
 
@@ -193,6 +202,12 @@
         margin-bottom: 0;
     }
 
+    .navigation__link-account {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 16px;
+    }
+
     .navigation__active {
         font-weight: 500;
         font-size: 18px;
@@ -201,7 +216,7 @@
         text-decoration: none;
         margin: 0;
         padding: 0;
-        margin-bottom: 28px;
+        margin-bottom: 22px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -229,19 +244,19 @@
     }
 
     .navigation__button_type_close {
-        width: 22px;
-        height: 22px;
+        width: 30px;
+        height: 30px;
         position: absolute;
-        top: 28px;
-        right: 42px;
+        top: 22.44px;
+        right: 22.44px;
         margin: 0;
         padding: 0;
         object-fit: cover;
     }
 
     .navigation__menu_type_close {
-        width: 22px;
-        height: 22px;
+        width: 30px;
+        height: 30px;
         object-fit: cover;
         object-position: center;
     }
@@ -274,15 +289,15 @@
     }
 
     .navigation__button_type_close {
-        position: absolute;
-        top: 18px;
-        right: 6px;
+        width: 30px;
+        height: 30px;
+        top: 13.44px;
+        right: 13.44px;
     }
 
     .navigation__menu_type_close {
-        width: 22px;
-        height: 22px;
-        object-fit: contain;
+        width: 30px;
+        height: 30px;
     }
 
     .navigation__link {
@@ -290,7 +305,8 @@
     }
 
     .navigation__active {
-        margin-bottom: 24px;
+        margin-bottom: 15px;
+        padding-bottom: 7px;
     }
 
     .navigation__profile {

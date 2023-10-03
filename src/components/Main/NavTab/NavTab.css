@@ -1,13 +1,19 @@
-.nav-tab__content {
+.nav-tab {
     max-width: 1140px;
     margin: 0 auto;
 }
 
 .nav-tab__href {
-    width: 129px;
-    height: 36px;
+    width: 127px;
+    height: 34px;
     background-color: transparent;
     border: 1px solid #fff;
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: #fff;
     border-radius: 3px;
     margin-top: 84px;
     margin-bottom: 75px;
@@ -22,17 +28,8 @@
     opacity: .7;
 }
 
-.nav-tab__text {
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 16px;
-    color: #fff;
-    margin: 0;
-    padding: 0; 
-}
-
 @media screen and (max-width: 1160px) {
-    .nav-tab__content {
+    .nav-tab {
         width: 129px;
     }
 

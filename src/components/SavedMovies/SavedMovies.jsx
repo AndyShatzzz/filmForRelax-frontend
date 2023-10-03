@@ -2,6 +2,7 @@ import React from "react";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Header from "../Header/Header";
 import SearchForm from "../Movies/SearchForm/SearchForm";
+import Footer from "../Footer/Footer";
 import './SavedMovies.css';
 
 function SavedMovies({ renderElement, loggedIn, onRemoveMovie, onCheckboxClick, isCheckboxActive }) {
@@ -16,9 +17,11 @@ function SavedMovies({ renderElement, loggedIn, onRemoveMovie, onCheckboxClick, 
             />
             <MoviesCardList
                 renderElement={renderElement}
-                onRemoveMovie={onRemoveMovie}
-                
+                onRemoveMovie={onRemoveMovie} 
             />
+            <div className="saved-movies__divider"></div>
+            <Footer />
+
         </section>
     );
 }

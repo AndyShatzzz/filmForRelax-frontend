@@ -34,6 +34,17 @@
     justify-content: space-between;
 }
 
+.footer__nav-list {
+    height: 16px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin-left: 20px;
+}
+
 .footer__year-text {
     font-weight: 400;
     font-size: 13px;
@@ -48,10 +59,13 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin: 0;
+    padding: 0;
     margin-top: 20px;
 }
 
 .footer__nav-text {
+    height: 16px;
     font-weight: 400;
     font-size: 13px;
     line-height: 15.73px;
@@ -61,10 +75,6 @@
     text-decoration: none;
 }
 
-.footer__nav-text:last-of-type {
-    padding-left: 20px;
-}
-
 .footer__nav-text:hover {
     cursor: pointer;
     opacity: .7;
@@ -72,11 +82,11 @@
 
 @media screen and (max-width: 1160px) {
     .footer__wrapper {
-        width: 668px;
+        width: 708px;
     }
 }
 
-@media screen and (max-width: 690px) {
+@media screen and (max-width: 720px) {
     .footer__wrapper {
         width: 300px;
     }
@@ -94,6 +104,8 @@
 
     .footer__nav {
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
         margin-top: 0;
     }
 
@@ -103,14 +115,22 @@
         text-align: center;
     }
 
-    .footer__nav-text {
-        font-size: 12px;
-        line-height: 14.52px;
-        text-align: center;
+    .footer__nav-list {
+        height: 15px;
+        margin-left: 0;
     }
 
-    .footer__nav-text:last-of-type {
-        padding-left: 0;
-        padding-top: 12px;
+    .footer__nav-list:last-of-type {
+        margin-top: 12px;
+    }
+
+    .footer__nav-text {
+        height: 15px;
+        font-size: 12px;
+        line-height: 14.52px;
+    }
+
+    .footer__year-text {
+        margin-top: 30px;
     }
 }

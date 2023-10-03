@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     background-color: #222222;
+    border-radius: 6px;
 }
 
 .movies-card__head {

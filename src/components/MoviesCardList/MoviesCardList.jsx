@@ -29,9 +29,9 @@ function MoviesCardList({ renderElement, onMovieClick, onSaveClick }) {
                         />
                     ))}
             </div>
-            {location.pathname === '/movies' && <div className="movies-card-list__more">
+            {location.pathname === '/movies' && <button className="movies-card-list__more">
                 <p className="movies-card-list__more-text">Ещё</p>
-            </div>}
+            </button>}
         </section>
     );
 }

@@ -56,12 +56,17 @@
     outline: none;
 }
 
+.profile__input:focus {
+    outline: #3456F3 solid 1px;
+    border-radius: 2px;
+}
+
 .profile__input:hover {
     cursor: text;
     opacity: .8;
 }
 
-.profile__input__input_error {
+.profile__input-error {
     font-weight: 400;
     font-size: 10px;
     line-height: 12.1px;

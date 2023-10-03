@@ -3,9 +3,9 @@ import './NavTab.css';
 
 function NavTab() {
     return (
-        <nav className="nav-tab__content">
+        <nav className="nav-tab">
             <a className="nav-tab__href" href="#about-project">
-                <p className="nav-tab__text">Узнать больше</p>
+                Узнать больше
             </a>
         </nav>
     );

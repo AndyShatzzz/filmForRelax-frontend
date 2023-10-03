@@ -54,15 +54,26 @@
     padding-bottom: 10px;
 }
 
+.form__input::placeholder {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16.94px;
+    color: #fff;
+}
+
 .form__input:hover {
     cursor: text;
+}
+
+.form__input:focus {
+    border-bottom: #3456F3 solid 1px;
 }
 
 .form__input_type_error {
     color: #EE3465;
 }
 
-.form__input_error {
+.form__input-error {
     font-weight: 400;
     font-size: 10px;
     line-height: 12.1px;
@@ -86,11 +97,11 @@
     padding: 0;
     border: none;
     border-radius: 3px;
-    margin-top: 69px;
+    margin-top: 57px;
 }
 
 .form__button-submit_type_margin {
-    margin-top: 140px;
+    margin-top: 129px;
 }
 
 .form__button-submit:hover {

@@ -1,4 +1,4 @@
-.promo__content {
+.promo {
     max-width: 1140px;
     padding: 75px 0 0;
     margin: 0 auto;
@@ -36,7 +36,7 @@
 }
 
 @media screen and (max-width: 1160px) {
-    .promo__content {
+    .promo {
         flex-direction: column-reverse;
         width: 680px;
     }
@@ -61,7 +61,7 @@
 }
 
 @media screen and (max-width: 690px) {
-    .promo__content {
+    .promo {
         padding: 0;
         width: 300px;
     }
@@ -78,6 +78,7 @@
         margin: 0 auto;
         font-size: 30px;
         line-height: 38px;
+        letter-spacing: -1.2px;
     }
 
     .promo__text {
