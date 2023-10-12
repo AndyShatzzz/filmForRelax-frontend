@@ -1,0 +1,139 @@
+.portfolio {
+    width: 100%;
+    background-color: #202020;
+    display: flex;
+    justify-content: center;
+}
+
+.portfolio__wrapper {
+    width: 1140px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 125px;
+}
+
+.portfolio__title {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
+    color: #8B8B8B;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 50px;
+}
+
+.portfolio__link {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.portfolio__info {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.portfolio__info-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-bottom: 1px solid #E6E6E6;
+    padding-bottom: 19px;
+    margin-bottom: 20px;
+}
+
+.portfolio__info-list:last-of-type {
+    border-bottom: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.portfolio__info-list:hover {
+    cursor: pointer;
+    opacity: .7;
+}
+
+.portfolio__text {
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 50px;
+    color: #fff;
+    letter-spacing: -1.2px;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 19px;
+}
+
+.portfolio__text:last-of-type {
+    padding-bottom: 0; 
+}
+
+.portfolio__image {
+    width: 29px;
+    height: 60px;
+    object-fit: none;
+}
+
+@media screen and (max-width: 1160px) {
+    .portfolio__wrapper {
+        width: 668px;
+        padding-bottom: 90px;
+    }
+
+    .portfolio__title {
+        color: #A0A0A0;
+    }
+
+    .portfolio__text {
+        font-size: 28px;
+        letter-spacing: -1.12px;
+    }
+
+    .portfolio__image {
+        width: 27px;
+    }
+}
+
+@media screen and (max-width: 690px) {
+    .portfolio__wrapper {
+        width: 291px;
+        padding-bottom: 70px;
+    }
+
+    .portfolio__title {
+        font-size: 14px;
+        color: #A0A0A0;
+        margin-bottom: 40px;
+    }
+
+    .portfolio__text {
+        font-size: 18px;
+        line-height: 28px;
+        letter-spacing: -0.72px;
+    }
+
+    .portfolio__image {
+        width: 18px;
+        height: 28px;
+        object-fit: none;
+    }
+
+    .portfolio__link {
+        height: 28px;
+        padding-bottom: 19px;
+        padding-top: 20px;
+    }
+    
+    .portfolio__link:first-of-type {
+        padding-top: 0;
+    }
+    
+    .portfolio__link:last-of-type {
+        padding-bottom: 0;
+    }
+}

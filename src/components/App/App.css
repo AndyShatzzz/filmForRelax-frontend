@@ -1,0 +1,26 @@
+.app {
+  min-height: 100vh;
+  min-width: 320px;
+  background-color: #073042;
+  font-family: 'Inter', 'Arial', Helvetica, sans-serif;
+  font-style: normal;
+  margin: 0 auto 0;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../../vendor/fonts/Inter/Inter-Regular.woff2) format("woff2"),
+       url(../../vendor/fonts/Inter/Inter-Regular.woff) format("woff");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../../vendor/fonts/Inter/Inter-Medium.woff2) format("woff2"),
+       url(../../vendor/fonts/Inter/Inter-Medium.woff) format("woff");
+}
