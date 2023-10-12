@@ -9,7 +9,8 @@
 Ссылка на план дипломной работы: https://github.com/users/AndyShatzzz/projects/1
 
 Адрес репозитория: https://github.com/AndyShatzzz/movies-explorer-frontend.git
-Ссылка на Pull request: 
+
+Ссылка на Pull request: https://github.com/AndyShatzzz/movies-explorer-frontend/pull/2
 
 ## Ссылки на проект
 
@@ -18,3 +19,5 @@ IP 130.193.36.180
 Backend https://api.andyshatzzz.nomoredomainsrocks.ru
 
 Frontend https://andyshatzzz.nomoredomainsrocks.ru
+
+/home/andyshatzzz/movies-explorer-frontend/build
