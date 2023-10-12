@@ -14,15 +14,19 @@
 }
 
 .movies-card__title {
+    max-width: 240px;
+    max-height: 18px;
     font-weight: 500;
     font-size: 15px;
     line-height: 18px;
     color: #fff;
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 .movies-card__duration {
+    max-height: 18px;
     font-weight: 400;
     font-size: 13px;
     line-height: 18px;
@@ -66,6 +70,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.movies-card__button_type_active:hover {
+    cursor: pointer;
+    opacity: .8;
 }
 
 .movies-card__button:hover {

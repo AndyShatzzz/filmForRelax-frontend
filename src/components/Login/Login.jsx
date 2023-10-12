@@ -2,7 +2,7 @@ import React from "react";
 import Form from "../Form/Form";
 import './Login.css';
 
-function Login() {
+function Login({ onSubmit, error }) {
     return (
         <>
             <Form 
@@ -12,6 +12,8 @@ function Login() {
             formText={'Ещё не зарегистрированы?'}
             buttonToggle={'Регистрация'}
             greeting={'Рады видеть!'}
+            onSubmit={onSubmit}
+            error={error}
         />
             
 

@@ -4,12 +4,19 @@ import Header from "../Header/Header";
 import './Form.css';
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
-function Form({ emailInput, passwordInput, buttonSubmit, formText, buttonToggle, children, greeting }) {
+function Form({ emailInput, passwordInput, buttonSubmit, formText, buttonToggle, greeting, onSubmit, error }) {
     const location = useLocation();
 
     const form = useFormAndValidation();
 
-
+    function handleSubmit(evt) {
+        evt.preventDefault();
+        onSubmit({
+            name: form.values.name,
+            email: form.values.email,
+            password: form.values.password,
+        })
+    }
 
     return (
         <>
@@ -22,6 +29,7 @@ function Form({ emailInput, passwordInput, buttonSubmit, formText, buttonToggle,
                         name="form" 
                         value={form.values} 
                         onChange={form.handleChange} 
+                        onSubmit={handleSubmit}
                         noValidate
                     >
                         {location.pathname === '/signup' && 
@@ -31,9 +39,10 @@ function Form({ emailInput, passwordInput, buttonSubmit, formText, buttonToggle,
                                     className={`form__input ${form.errors.name ? 'form__input_type_error' : ''}`} 
                                     name="name" placeholder="Имя" 
                                     type="text"
-                                    minLength={3} maxLength={40}
+                                    pattern='[a-zA-Zа-яА-ЯЁё \-]+$'
                                     required />
-                                <span className="form__input-error">{form.errors.name}</span>
+                                {form.errors.name && <span className="form__input-error">{form.errors.name} Данное поле должно
+                            содержать только латиницу, кириллицу, пробел или дефис.</span>}
                             </label>}
                         <label className="form__form-input">
                             <p className="form__input-info">{emailInput}</p>
@@ -56,10 +65,9 @@ function Form({ emailInput, passwordInput, buttonSubmit, formText, buttonToggle,
                                 required />
                             <span className="form__input-error">{form.errors.password}</span>
                         </label>
-
-                        {location.pathname === '/signin' && (<button type="submit" className="form__button-submit 
-                            form__button-submit_type_margin">{buttonSubmit}</button>)}
-                        {location.pathname === '/signup' && (<button type="submit" className="form__button-submit">
+                        {error && <span className="form__error">{error}</span>}
+                        {location.pathname === '/signin' && (<button type="submit" className={`form__button-submit-innactive form__button-submit-innactive_type_margin ${form.isValid && 'form__button-submit'}`}>{buttonSubmit}</button>)}
+                        {location.pathname === '/signup' && (<button type="submit" className={`form__button-submit-innactive ${form.isValid && 'form__button-submit'}`}>
                             {buttonSubmit}</button>)}
                     </form>
                     <p className="form__text">{formText}

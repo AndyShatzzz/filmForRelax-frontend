@@ -7,11 +7,12 @@ import AboutMe from './AboutMe/AboutMe';
 import Portfolio from './Portfolio/Portfolio';
 import Footer from '../Footer/Footer';
 
-function Main({ loggedIn }) {
+function Main({ loggedIn, setError }) {
   return (
     <>
       <Header 
         loggedIn={loggedIn}
+        setError={setError}
         />
       <Promo />
       <NavTab />

@@ -4,7 +4,7 @@ import Navigation from '../Navigation/Navigation';
 import headerLogoWord from "../../images/headerLogoWord.svg";
 import './Header.css';
 
-function Header({ loggedIn, greeting }) {
+function Header({ loggedIn, greeting, setError }) {
 
     const location = useLocation();
 
@@ -22,7 +22,7 @@ function Header({ loggedIn, greeting }) {
                 {(location.pathname === '/signup' || location.pathname === '/signin')
                     && <h1 className="header__greeting">{greeting}</h1>}
                 {loggedIn && <Navigation
-                    loggedIn={loggedIn}
+                    setError={setError}
                 />}
                 
                 {!loggedIn && location.pathname !== '/signin' && location.pathname !== '/signup' && (

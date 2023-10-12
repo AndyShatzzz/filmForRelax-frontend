@@ -44,6 +44,13 @@
     padding-bottom: 9px;
 }
 
+.movies-card-list__error {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    color: #fff;
+}
+
 @media screen and (max-width: 1160px) {
     .movies-card-list__grid {
         width: 708px;

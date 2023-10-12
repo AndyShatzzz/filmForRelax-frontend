@@ -5,13 +5,17 @@ import navigationMenu from '../../images/navigationMenu.svg';
 import closeIcon from '../../images/closeIcon.svg';
 import './Navigation.css';
 
-function Navigation({ loggedIn }) {
+function Navigation({ setError }) {
 
     const location = useLocation();
     const [isNavBarOpen, setIsNavBarOpen] = React.useState(false);
 
     function toggleNavBarOpen() {
         setIsNavBarOpen(!isNavBarOpen);
+    }
+
+    function handleSetErrorNull() {
+        setError(null);
     }
 
     return (
@@ -29,10 +33,10 @@ function Navigation({ loggedIn }) {
                     <NavLink className={isNavBarOpen ?  (({isActive}) => isActive ?  "navigation__active" : "navigation__link") : "navigation__link-inactive" } to={'/'}>
                         Главная
                     </NavLink>
-                    <NavLink className={({isActive}) => isActive ?  "navigation__active" : "navigation__link" } to={'/movies'}>
+                    <NavLink onClick={handleSetErrorNull} className={({isActive}) => isActive ?  "navigation__active" : "navigation__link" } to={'/movies'}>
                         Фильмы
                     </NavLink>
-                    <NavLink className={({isActive}) => isActive ? "navigation__active" : "navigation__link" } to={'/saved-movies'}>
+                    <NavLink onClick={handleSetErrorNull} className={({isActive}) => isActive ? "navigation__active" : "navigation__link" } to={'/saved-movies'}>
                         Сохранённые фильмы
                     </NavLink>
                 </div>

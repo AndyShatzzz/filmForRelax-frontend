@@ -2,7 +2,7 @@ import React from "react";
 import './Register.css';
 import Form from "../Form/Form";
 
-function Register() {
+function Register({ onSubmit, error }) {
     return (
         <>
         <Form 
@@ -12,6 +12,8 @@ function Register() {
             formText={'Уже зарегистрированы?'}
             buttonToggle={'Войти'}
             greeting={'Добро пожаловать!'}
+            onSubmit={onSubmit}
+            error={error}
         />
         </>
     );
