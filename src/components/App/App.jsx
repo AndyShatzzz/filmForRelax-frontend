@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation, Navigate } from 'react-router-dom';
 
 import Main from '../Main/Main';
 import './App.css';
@@ -13,6 +13,9 @@ import * as mainApi from '../../utils/MainApi';
 import * as moviesApi from '../../utils/MoviesApi';
 import { CurrentUserContext } from '../../context/CurrentUserContext'
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import * as errorMessage from '../../constants/errorMessage';
+import * as message from '../../constants/message';
+import * as constants from '../../constants/constants';
 
 function App() {
 
@@ -42,6 +45,7 @@ function App() {
   async function signupSubmit({ name, email, password }) {
     setRegistrationError('');
     try {
+      setIsLoading(true);
       const res = await moviesApi
         .signup(name, email, password);
       if (res.status === 'error') {
@@ -53,27 +57,30 @@ function App() {
         });
       }
     } catch (error) {
-      setRegistrationError('Произошла ошибка при регистрации.');
+      setRegistrationError(errorMessage.ERROR_REGISTER);
       setTimeout(() => {
         setRegistrationError('');
       }, 3000);
     }
+    setIsLoading(false);
   }
 
   async function signInSubmit({ email, password }) {
     setAuthorizationError('');
     try {
+      setIsLoading(true);
       const res = await moviesApi
         .signIn(email, password);
       localStorage.setItem('JWT', res.token);
       setLoggedIn(true);
       navigate('/movies');
     } catch (error) {
-      setAuthorizationError('Произошла ошибка при авторизации.');
+      setAuthorizationError(errorMessage.ERROR_AUTH);
       setTimeout(() => {
         setAuthorizationError('');
       }, 3000);
     }
+    setIsLoading(false);
   }
 
   function handleSignOut() {
@@ -98,7 +105,6 @@ function App() {
           .checkToken(localStorage.getItem('JWT'));
         if (res) {
           setLoggedIn(true);
-          // navigate('/movies');
         }
       } catch (err) {
         setLoggedIn(false);
@@ -121,19 +127,21 @@ function App() {
   async function patchUserSubmit({ name, email }) {
     setPatchError('');
     try {
+      setIsLoading(true);
       const res = await moviesApi
         .patchUserInfo(name, email);
       setCurrentUser(res);
-      setPatchMessage('Данные пользователя успешно обновлены!')
+      setPatchMessage(message.PATCH_USER_MESSAGE)
       setTimeout(() => {
         setPatchMessage('');
       }, 3000);
     } catch {
-      setPatchError('Ошибка при обновлении данных пользователя');
+      setPatchError(errorMessage.ERROR_PATCH_USER);
       setTimeout(() => {
         setPatchError('');
       }, 3000);
     }
+    setIsLoading(false);
   }
 
   async function handleSaveMovieSubmit(movie) {
@@ -155,7 +163,7 @@ function App() {
       setSavedMovies([...savedMovies, res]);
       setFilterSavedMovies([...savedMovies, res]);
     } catch (err) {
-      setPatchError('Ошибка при обновлении данных пользователя');
+      setPatchError(errorMessage.ERROR_PATCH_USER);
       setTimeout(() => {
         setPatchError('');
       }, 3000);
@@ -173,9 +181,6 @@ function App() {
   }
 
   // Функционал по работе с сторонним Api практикума
-  function handleSetMovie(movie) {
-    setMovies([...movie]);
-  };
 
   function handleSetFilterMovieText(value) {
     setFilterMovieText(value);
@@ -190,7 +195,6 @@ function App() {
         setFilterSavedMovies([...res])
       })
       .catch((err) => console.log(err));
-    getMainMovies();
 
     const savedText = localStorage.getItem('FilterMovieText');
     const savedCheckbox = localStorage.getItem('Checkbox');
@@ -207,18 +211,18 @@ function App() {
     if (savedFilterMoviesData) {
       setFilterMoviesData(savedFilterMoviesData);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn])
 
-  function filterMovies(data, isCheckboxActive) {
+  function filterMovies(data, checkbox) {
     let filterData = [...data];
 
-    if (!filterMovieText && !isCheckboxActive) {
+    if (!filterMovieText && !checkbox) {
       filterData = [];
     }
 
-    if (isCheckboxActive) {
-      filterData = filterData.filter(movie => movie.duration <= 40);
+    if (checkbox) {
+      filterData = filterData.filter(movie => movie.duration <= constants.MOVIE_SHORT_FILM_DURATION);
     }
 
     if (filterMovieText) {
@@ -228,17 +232,45 @@ function App() {
     return filterData;
   }
 
-  async function getMainMovies() {
-    try {
-      const res = await mainApi
-        .getMovies();
-      handleSetMovie([...res]);
+  function searchCheckbox(isActive) {
+    if (movies.length === 0) {
+      setIsLoading(true);
+      setError(null);
+      mainApi
+        .getMovies()
+        .then((data) => {
+          setMovies([...data])
+          const filterData = filterMovies(data, isActive);
+          if (filterData.length > 0) {
+            setFilterMoviesData(filterData);
+            localStorage.setItem('FilterMoviesData', JSON.stringify(filterMovies(data, isActive)));
+          }
+          if (filterData.length === 0) {
+            setFilterMoviesData([])
+            localStorage.setItem('FilterMoviesData', JSON.stringify(filterMovies(data, isActive)));
+            setError(message.NOT_FOUND)
+          } else {
+            setError(null)
+          }
+        })
+        .then(() => setIsLoading(false))
+        .catch(() => setError(errorMessage.ERROR_SERVER))
     }
-    catch {
-      setError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
-    }
-    finally {
-      setIsLoading(false);
+
+    if (movies.length !== 0) {
+      const filterData = filterMovies(movies, isActive);
+      if (filterData.length > 0) {
+        setFilterMoviesData(filterData);
+        localStorage.setItem('FilterMoviesData', JSON.stringify(filterMovies(movies, isActive)));
+      }
+      if (filterData.length === 0) {
+        setFilterMoviesData([])
+        localStorage.setItem('FilterMoviesData', JSON.stringify(filterMovies(movies, isActive)));
+        setError(message.NOT_FOUND)
+      } else {
+        setError(null)
+      }
+      localStorage.setItem('Checkbox', isActive);
     }
   }
 
@@ -247,30 +279,55 @@ function App() {
     setIsLoading(true);
     setError(null);
     setAmountMovie(maxAmountMovies());
-    getMainMovies();
-
-    const filterData = filterMovies(movies, isCheckboxActive);
-    if (filterData.length > 0) {
-      setFilterMoviesData(filterData);
-      localStorage.setItem('FilterMoviesData', JSON.stringify(filterMovies(movies, isCheckboxActive)));
+    if (movies.length === 0) {
+      mainApi
+        .getMovies()
+        .then((data) => {
+          setMovies([...data])
+          const filterData = filterMovies(data, isCheckboxActive);
+          if (filterData.length > 0) {
+            setFilterMoviesData(filterData);
+            localStorage.setItem('FilterMoviesData', JSON.stringify(filterMovies(data, isCheckboxActive)));
+          }
+          if (filterData.length === 0) {
+            setFilterMoviesData([])
+            localStorage.setItem('FilterMoviesData', JSON.stringify(filterMovies(data, isCheckboxActive)));
+            setError(message.NOT_FOUND)
+          } else {
+            setError(null)
+          }
+        })
+        .then(() => setIsLoading(false))
+        .catch(() => setError(errorMessage.ERROR_SERVER))
     }
-    if (filterData.length === 0) {
-      setFilterMoviesData([])
-      localStorage.setItem('FilterMoviesData', JSON.stringify(filterMovies(movies, isCheckboxActive)));
-      setError('Ничего не найдено')
-    } else {
-      setError(null)
+
+    if (movies.length !== 0) {
+      const filterData = filterMovies(movies, isCheckboxActive);
+      if (filterData.length > 0) {
+        setFilterMoviesData(filterData);
+        localStorage.setItem('FilterMoviesData', JSON.stringify(filterMovies(movies, isCheckboxActive)));
+      }
+      if (filterData.length === 0) {
+        setFilterMoviesData([])
+        localStorage.setItem('FilterMoviesData', JSON.stringify(filterMovies(movies, isCheckboxActive)));
+        setError(message.NOT_FOUND)
+      } else {
+        setError(null)
+      }
+      setIsLoading(false);
     }
   };
 
   function maxAmountMovies() {
     const screenWidth = window.innerWidth;
-    return screenWidth > 1160 ? 12 : screenWidth > 720 ? 8 : 5;
+    return screenWidth > constants.TABLET_SCREEN_WIDTH ? constants.LAPTOP_MOVIE_NUMBER :
+      screenWidth > constants.MOBILE_SCREEN_WIDTH ? constants.TABLET_MOVIE_NUMBER : constants.MOBILE_MOVIE_NUMBER;
   };
 
   function addMoreMovies() {
     const screenWidth = window.innerWidth;
-    return screenWidth > 1160 ? 3 : 2;
+    return screenWidth > constants.TABLET_SCREEN_WIDTH ? constants.TABLET_MORE_MOVIES :
+      constants.MOBILE_MORE_MOVIES;
   };
 
   const handleLoadMoreMovies = () => {
@@ -288,7 +345,7 @@ function App() {
   React.useEffect(() => {
     updateLoadMoreButton(amountMovie);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filterMoviesData, amountMovie]);
+  }, [filterMoviesData, updateLoadMoreButton]);
 
   const handleResizeScreen = () => {
     const newAmountMovies = maxAmountMovies();
@@ -311,17 +368,19 @@ function App() {
         <Routes>
           <Route
             path='/signup'
-            element={<Register
+            element={loggedIn ? <Navigate to="/" replace /> : <Register
               onSubmit={signupSubmit}
               error={registrationError}
+              isLoading={isLoading}
             />}
           />
 
           <Route
             path='/signin'
-            element={<Login
+            element={loggedIn ? <Navigate to="/" replace /> : <Login
               onSubmit={signInSubmit}
               error={authorizationError}
+              isLoading={isLoading}
             />}
           />
           <Route
@@ -350,6 +409,7 @@ function App() {
               savedMovies={savedMovies}
               filterSavedMovies={filterSavedMovies}
               setError={setError}
+              searchCheckbox={searchCheckbox}
             />}
           />
           <Route
@@ -378,6 +438,7 @@ function App() {
               handleLoadMoreMovies={handleLoadMoreMovies}
               setError={setError}
               patchMessage={patchMessage}
+              isLoading={isLoading}
             />}
           />
           <Route

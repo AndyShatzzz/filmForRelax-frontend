@@ -21,6 +21,10 @@
     position: relative;
 }
 
+.form__form_type_inactive {
+    opacity: .5;
+}
+
 .form__form-input {
     padding-bottom: 24px;
     position: relative;

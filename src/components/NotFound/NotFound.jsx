@@ -10,7 +10,7 @@ function NotFound() {
         evt.preventDefault();
         navigate(-1);
     }
-    
+
     return (
         <section className="not-found">
             <div className="not-found__container">

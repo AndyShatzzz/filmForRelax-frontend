@@ -4,12 +4,13 @@ import Header from "../Header/Header";
 import './Profile.css';
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
-function Profile({ loggedIn, currentUser, handleSignOut, patchUserSubmit, patchError, setError, patchMessage }) {
+function Profile({ loggedIn, currentUser, handleSignOut, patchUserSubmit, patchError, setError, patchMessage, isLoading }) {
 
     const formEdit = useFormAndValidation();
 
     const [isChangedName, setIsChangedName] = React.useState(false);
     const [isChangedEmail, setIsChangedEmail] = React.useState(false);
+
 
     React.useEffect(() => {
         setIsChangedName(currentUser.name !== formEdit.values.name);
@@ -28,14 +29,12 @@ function Profile({ loggedIn, currentUser, handleSignOut, patchUserSubmit, patchE
                 name: formEdit.values.name
             })
         }
-        if(formEdit.values.email !== '' && formEdit.values.name !== '') {
+        if (formEdit.values.email !== '' && formEdit.values.name !== '') {
             patchUserSubmit({
                 name: formEdit.values.name,
                 email: formEdit.values.email
             })
         }
-        formEdit.setValues({ name: '', email: '' });
-        evt.target.reset();
     }
 
     return (
@@ -47,7 +46,7 @@ function Profile({ loggedIn, currentUser, handleSignOut, patchUserSubmit, patchE
                 />
                 <div className="profile__container">
                     <h1 className="profile__title">Привет, {currentUser.name}!</h1>
-                    <form className="profile__form"
+                    <form className={`profile__form ${isLoading && 'profile__form_type_inactive'}`}
                         name="formEdit"
                         value={formEdit.values}
                         onChange={formEdit.handleChange}
@@ -60,6 +59,8 @@ function Profile({ loggedIn, currentUser, handleSignOut, patchUserSubmit, patchE
                                 type="text"
                                 name="name"
                                 pattern='[a-zA-Zа-яА-ЯЁё \-]+$'
+                                defaultValue={currentUser.name}
+                                disabled={isLoading}
                             />
                             <p className="profile__input-info">{currentUser.name}</p>
                             {formEdit.errors.name && <span className="profile__input-error">{formEdit.errors.name} Данное поле должно
@@ -70,6 +71,9 @@ function Profile({ loggedIn, currentUser, handleSignOut, patchUserSubmit, patchE
                                 placeholder="Email"
                                 type="email"
                                 name="email"
+                                pattern='\S+@\S+\.\S+'
+                                defaultValue={currentUser.email}
+                                disabled={isLoading}
                             />
                             <p className="profile__input-info">{currentUser.email}</p>
                             <span className="profile__input-error">{formEdit.errors.email}</span>

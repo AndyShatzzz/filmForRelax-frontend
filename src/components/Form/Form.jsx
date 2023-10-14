@@ -4,7 +4,7 @@ import Header from "../Header/Header";
 import './Form.css';
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
-function Form({ emailInput, passwordInput, buttonSubmit, formText, buttonToggle, greeting, onSubmit, error }) {
+function Form({ emailInput, passwordInput, buttonSubmit, formText, buttonToggle, greeting, onSubmit, error, isLoading }) {
     const location = useLocation();
 
     const form = useFormAndValidation();
@@ -25,43 +25,47 @@ function Form({ emailInput, passwordInput, buttonSubmit, formText, buttonToggle,
                     greeting={greeting}
                 />
                 <div className="form__container">
-                    <form className="form__form" 
-                        name="form" 
-                        value={form.values} 
-                        onChange={form.handleChange} 
+                    <form className={`form__form ${isLoading && 'form__form_type_inactive'}`}
+                        name="form"
+                        value={form.values}
+                        onChange={form.handleChange}
                         onSubmit={handleSubmit}
                         noValidate
                     >
-                        {location.pathname === '/signup' && 
+                        {location.pathname === '/signup' &&
                             <label className="form__form-input">
                                 <p className="form__input-info">Имя</p>
-                                <input 
-                                    className={`form__input ${form.errors.name ? 'form__input_type_error' : ''}`} 
-                                    name="name" placeholder="Имя" 
+                                <input
+                                    className={`form__input ${form.errors.name ? 'form__input_type_error' : ''}`}
+                                    name="name" placeholder="Имя"
                                     type="text"
                                     pattern='[a-zA-Zа-яА-ЯЁё \-]+$'
+                                    disabled={isLoading}
                                     required />
                                 {form.errors.name && <span className="form__input-error">{form.errors.name} Данное поле должно
-                            содержать только латиницу, кириллицу, пробел или дефис.</span>}
+                                    содержать только латиницу, кириллицу, пробел или дефис.</span>}
                             </label>}
                         <label className="form__form-input">
                             <p className="form__input-info">{emailInput}</p>
-                            <input type="email" 
+                            <input type="email"
                                 className={`form__input ${form.errors.email ? 'form__input_type_error' : ''}`}
-                                placeholder="E-mail" 
-                                name="email" 
-                                id="email" 
+                                placeholder="E-mail"
+                                name="email"
+                                id="email"
+                                pattern='\S+@\S+\.\S+'
+                                disabled={isLoading}
                                 required />
                             <span className="form__input-error">{form.errors.email}</span>
                         </label>
                         <label className="form__form-input">
                             <p className="form__input-info">{passwordInput}</p>
-                            <input type="password" 
+                            <input type="password"
                                 className={`form__input ${form.errors.password ? 'form__input_type_error' : ''}`}
-                                placeholder="Пароль" 
-                                name="password" 
-                                id="password" 
-                                minLength={6} maxLength={40} 
+                                placeholder="Пароль"
+                                name="password"
+                                id="password"
+                                minLength={6} maxLength={40}
+                                disabled={isLoading}
                                 required />
                             <span className="form__input-error">{form.errors.password}</span>
                         </label>

@@ -10,10 +10,10 @@ import Footer from '../Footer/Footer';
 function Main({ loggedIn, setError }) {
   return (
     <>
-      <Header 
+      <Header
         loggedIn={loggedIn}
         setError={setError}
-        />
+      />
       <Promo />
       <NavTab />
       <AboutProject />
@@ -21,7 +21,7 @@ function Main({ loggedIn, setError }) {
       <AboutMe />
       <Portfolio />
       <Footer />
-       
+
     </>
   );
 }

@@ -31,6 +31,10 @@
     position: relative;
 }
 
+.profile__form_type_inactive {
+    opacity: .5;
+}
+
 .profile__form-input {
     border-bottom: 1px solid #424242;
     padding-bottom: 16px;

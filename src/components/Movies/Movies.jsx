@@ -6,39 +6,42 @@ import Footer from '../Footer/Footer';
 import './Movies.css';
 
 
-function Movies({ 
-  renderElement, 
-  loggedIn, 
-  onSaveClick, 
-  onCheckboxClick, 
-  isCheckboxActive, 
-  setIsCheckboxActive, 
-  handleSetFilterMovieText, 
-  searchSubmit, 
-  isLoading, 
-  error, 
-  moreButton, 
+function Movies({
+  renderElement,
+  loggedIn,
+  onSaveClick,
+  onCheckboxClick,
+  isCheckboxActive,
+  setIsCheckboxActive,
+  handleSetFilterMovieText,
+  searchSubmit,
+  isLoading,
+  error,
+  moreButton,
   handleLoadMoreMovies,
   savedMovies,
   onDeleteMovie,
   filterSavedMovies,
-  setError
+  setError,
+  searchCheckbox
 }) {
 
   return (
     <section className="movies">
-      <Header 
+      <Header
         loggedIn={loggedIn}
         setError={setError}
       />
-      <SearchForm 
+      <SearchForm
         onCheckboxClick={onCheckboxClick}
         isCheckboxActive={isCheckboxActive}
         setIsCheckboxActive={setIsCheckboxActive}
         handleSetFilterMovieText={handleSetFilterMovieText}
         searchSubmit={searchSubmit}
+        searchCheckbox={searchCheckbox}
+        isLoading={isLoading}
       />
-      <MoviesCardList 
+      <MoviesCardList
         renderElement={renderElement}
         onSaveClick={onSaveClick}
         isLoading={isLoading}
@@ -50,7 +53,7 @@ function Movies({
         filterSavedMovies={filterSavedMovies}
       />
       <Footer />
-       
+
     </section>
   );
 }

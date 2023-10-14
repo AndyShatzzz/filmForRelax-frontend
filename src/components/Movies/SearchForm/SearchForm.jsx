@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import './SearchForm.css'
 import { useFormAndValidation } from "../../../hooks/useFormAndValidation";
 
-function SearchForm({ isCheckboxActive, setIsCheckboxActive, handleSetFilterMovieText, searchSubmit }) {
+function SearchForm({ isCheckboxActive, setIsCheckboxActive, handleSetFilterMovieText, searchSubmit, searchCheckbox, isLoading }) {
     const location = useLocation();
     const form = useFormAndValidation();
 
@@ -26,7 +26,7 @@ function SearchForm({ isCheckboxActive, setIsCheckboxActive, handleSetFilterMovi
 
     function handleCheckboxChange(evt) {
         setIsCheckboxActive(evt.target.checked);
-        // onCheckboxClick(evt.target.checked);
+        searchCheckbox(evt.target.checked);
         if (location.pathname === '/movies') {
             localStorage.setItem('Checkbox', evt.target.checked);
         }
@@ -35,18 +35,22 @@ function SearchForm({ isCheckboxActive, setIsCheckboxActive, handleSetFilterMovi
         }
     }
 
-
     return (
         <section className="search-form">
-            <form className="search-form__container"
+            <form className={`search-form__container ${isLoading && 'search-form__container_type_inactive'}`}
                 name="search-form"
                 value={form.values}
                 onChange={form.handleChange}
                 onSubmit={searchSubmit}
             >
                 <div className="search-form__wrapper">
-                    <input className="search-form__input" name="moviesSearch" placeholder="Фильм" type="search"
-                        value={searchText} onChange={handleSearchTextChange} />
+                    <input className="search-form__input"
+                        name="moviesSearch"
+                        placeholder="Фильм"
+                        type="search"
+                        value={searchText}
+                        onChange={handleSearchTextChange}
+                        disabled={isLoading} />
                     <button className="search-form__button" type="submit">Поиск</button>
                 </div>
                 <div className="search-form__wrapper-toggle">
@@ -56,6 +60,7 @@ function SearchForm({ isCheckboxActive, setIsCheckboxActive, handleSetFilterMovi
                             name="checkbox"
                             checked={isCheckboxActive}
                             onChange={handleCheckboxChange}
+                            disabled={isLoading}
                         />
                         <span className={`search-form__toggle-background 
                         ${isCheckboxActive ? 'search-form__toggle-background_type_active' : ''}`}></span>
