@@ -28,6 +28,11 @@
     display: flex;
     flex-direction: column;
     margin-top: 123px;
+    position: relative;
+}
+
+.profile__form_type_inactive {
+    opacity: .5;
 }
 
 .profile__form-input {
@@ -97,6 +102,20 @@
     color: #fff;
 }
 
+.profile__button-edit_type_inactive {
+    background-color: transparent;
+    border: none;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15.73px;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    margin-top: 220px;
+    opacity: .2;
+    pointer-events: none;
+}
+
 .profile__button-edit {
     background-color: transparent;
     border: none;
@@ -107,6 +126,8 @@
     margin: 0;
     padding: 0;
     margin-top: 220px;
+    pointer-events: all;
+    opacity: 1;
 }
 
 .profile__button-edit:hover {
@@ -131,6 +152,30 @@
     opacity: .7;
 }
 
+.profile__error {
+    color: #FF004C;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13.31px;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 260px;
+    left: 80px;
+}
+
+.profile__patch-message {
+    color: greenyellow;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13.31px;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 260px;
+    left: 80px;
+}
+
 @media screen and (max-width: 1160px) {
     .profile__container {
         padding: 236px 0 269px;
@@ -138,6 +183,10 @@
 
     .profile__form {
         margin-top: 96px;
+    }
+
+    .profile__button-edit_type_inactive {
+        margin-top: 210px;
     }
 
     .profile__button-edit {
@@ -159,6 +208,12 @@
         width: 130px;
     }
 
+    .profile__button-edit_type_inactive {
+        margin-top: 379px;
+        font-size: 12px;
+        line-height: 14.52px;
+    }
+
     .profile__button-edit {
         margin-top: 379px;
         font-size: 12px;
@@ -168,5 +223,15 @@
     .profile__button-exit {
         font-size: 12px;
         line-height: 14.52px;
+    }
+
+    .profile__error {
+        top: 420px;
+        left: 3px;
+    }
+    
+    .profile__patch-message {
+        top: 420px;
+        left: 12.5px; 
     }
 }

@@ -5,7 +5,7 @@ import navigationMenu from '../../images/navigationMenu.svg';
 import closeIcon from '../../images/closeIcon.svg';
 import './Navigation.css';
 
-function Navigation({ loggedIn }) {
+function Navigation({ setError }) {
 
     const location = useLocation();
     const [isNavBarOpen, setIsNavBarOpen] = React.useState(false);
@@ -14,25 +14,29 @@ function Navigation({ loggedIn }) {
         setIsNavBarOpen(!isNavBarOpen);
     }
 
+    function handleSetErrorNull() {
+        setError(null);
+    }
+
     return (
         <nav className="navigation">
-            <div className={`navigation__overlay ${isNavBarOpen ? 'navigation__overlay_open' : ''}`} 
+            <div className={`navigation__overlay ${isNavBarOpen ? 'navigation__overlay_open' : ''}`}
                 onClick={toggleNavBarOpen}></div>
             <button className="navigation__button" type="button" onClick={toggleNavBarOpen}>
-                    <img className="navigation__menu" src={navigationMenu} alt="Кнопка открытия меню" />
+                <img className="navigation__menu" src={navigationMenu} alt="Кнопка открытия меню" />
             </button>
             <div className={`navigation__container ${isNavBarOpen ? 'navigation__container_type_popup' : ''}`}>
-            <button className="navigation__button navigation__button_type_close" type="button" onClick={toggleNavBarOpen}>
+                <button className="navigation__button navigation__button_type_close" type="button" onClick={toggleNavBarOpen}>
                     <img className="navigation__menu navigation__menu_type_close" src={closeIcon} alt="Кнопка закрытия меню" />
-            </button>
+                </button>
                 <div className="navigation__nav-bar">
-                    <NavLink className={isNavBarOpen ?  (({isActive}) => isActive ?  "navigation__active" : "navigation__link") : "navigation__link-inactive" } to={'/'}>
+                    <NavLink className={isNavBarOpen ? (({ isActive }) => isActive ? "navigation__active" : "navigation__link") : "navigation__link-inactive"} to={'/'}>
                         Главная
                     </NavLink>
-                    <NavLink className={({isActive}) => isActive ?  "navigation__active" : "navigation__link" } to={'/movies'}>
+                    <NavLink onClick={handleSetErrorNull} className={({ isActive }) => isActive ? "navigation__active" : "navigation__link"} to={'/movies'}>
                         Фильмы
                     </NavLink>
-                    <NavLink className={({isActive}) => isActive ? "navigation__active" : "navigation__link" } to={'/saved-movies'}>
+                    <NavLink onClick={handleSetErrorNull} className={({ isActive }) => isActive ? "navigation__active" : "navigation__link"} to={'/saved-movies'}>
                         Сохранённые фильмы
                     </NavLink>
                 </div>
@@ -40,14 +44,14 @@ function Navigation({ loggedIn }) {
                     <Link className="navigation__link navigation__link-account"
                         to={'/profile'}>
                         Аккаунт
-                    <div className={`navigation__wrapper-icon 
-                    ${(location.pathname === '/profile' || location.pathname === '/movies' || 
-                    location.pathname === '/saved-movies') && 'navigation__wrapper-icon_type_profile'}`}>
-                        <img className="navigation__icon"
-                            src={headerIcon}
-                            alt="Иконка профиля"
-                        />
-                    </div>
+                        <div className={`navigation__wrapper-icon 
+                    ${(location.pathname === '/profile' || location.pathname === '/movies' ||
+                                location.pathname === '/saved-movies') && 'navigation__wrapper-icon_type_profile'}`}>
+                            <img className="navigation__icon"
+                                src={headerIcon}
+                                alt="Иконка профиля"
+                            />
+                        </div>
                     </Link>
                 </div>
             </div>

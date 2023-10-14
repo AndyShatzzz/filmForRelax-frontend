@@ -2,18 +2,21 @@ import React from "react";
 import Form from "../Form/Form";
 import './Login.css';
 
-function Login() {
+function Login({ onSubmit, error, isLoading }) {
     return (
         <>
-            <Form 
-            emailInput={'E-mail'}
-            passwordInput={'Пароль'}
-            buttonSubmit={'Войти'}
-            formText={'Ещё не зарегистрированы?'}
-            buttonToggle={'Регистрация'}
-            greeting={'Рады видеть!'}
-        />
-            
+            <Form
+                emailInput={'E-mail'}
+                passwordInput={'Пароль'}
+                buttonSubmit={'Войти'}
+                formText={'Ещё не зарегистрированы?'}
+                buttonToggle={'Регистрация'}
+                greeting={'Рады видеть!'}
+                onSubmit={onSubmit}
+                error={error}
+                isLoading={isLoading}
+            />
+
 
         </>
     );

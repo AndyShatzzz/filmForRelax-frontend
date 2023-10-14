@@ -4,7 +4,7 @@ import Navigation from '../Navigation/Navigation';
 import headerLogoWord from "../../images/headerLogoWord.svg";
 import './Header.css';
 
-function Header({ loggedIn, greeting }) {
+function Header({ loggedIn, greeting, setError }) {
 
     const location = useLocation();
 
@@ -18,18 +18,18 @@ function Header({ loggedIn, greeting }) {
                         alt="Логотип буквы С"
                     />
                 </Link>
-                
+
                 {(location.pathname === '/signup' || location.pathname === '/signin')
                     && <h1 className="header__greeting">{greeting}</h1>}
                 {loggedIn && <Navigation
-                    loggedIn={loggedIn}
+                    setError={setError}
                 />}
-                
+
                 {!loggedIn && location.pathname !== '/signin' && location.pathname !== '/signup' && (
                     <div className="header__link-container">
                         <Link to={'/signup'} className='header__link'>Регистрация</Link>
-                        <Link className='header__signin-container' to={'/signin'}> 
-                                <p className='header__link header__link-signin'>Войти</p>
+                        <Link className='header__signin-container' to={'/signin'}>
+                            <p className='header__link header__link-signin'>Войти</p>
                         </Link>
                     </div>
                 )}
